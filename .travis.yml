@@ -1,0 +1,26 @@
+sudo: false
+language: node_js
+build: trusty
+
+node_js:
+  - "12.14.1"
+
+script:
+  - npm install -g yarn
+  - yarn
+  - yarn flow
+  - yarn lint
+  - yarn test:unit
+  - make build-connect
+  - ./tests/run.sh ci
+
+notifications:
+  webhooks:
+    urls:
+      - http://ci-bot.satoshilabs.com:5000/travis
+    on_success: always
+    on_failure: always
+    on_start: always
+
+services:
+  - docker

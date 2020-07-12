@@ -1,0 +1,227 @@
+a:not(.button),
+a:visited {
+    cursor: pointer;
+    position: relative;
+    color: @color_green_primary;
+    text-decoration: none;
+    .hover();
+
+    &:after {
+        content: '';
+        position: absolute;
+        width: 100%;
+        border-top: 1px solid @color_green_primary;
+        line-height: 1px;
+        left: 0px;
+        bottom: -1px;
+        transition: all 0.3s;
+    }
+
+    &:hover {
+        color: @color_green_secondary;
+    }
+
+    &:active {
+        color: @color_green_tertiary;
+    }
+
+    /* &:hover,
+    &:active {
+        &:after {
+            border-color: @color_white;
+        }
+    } */
+}
+
+a.button {
+    text-decoration: none;
+    &:hover,
+    &:active {
+        color: @color_white;
+    }
+}
+
+a.button,
+button {
+    padding: 12px 24px;
+    border-radius: 3px;
+    font-size: 14px;
+    font-weight: 300;
+    cursor: pointer;
+    background: @color_green_primary;
+    color: @color_white;
+    border: 0px;
+
+    .hover();
+
+    &:hover {
+        background: @color_green_secondary;
+    }
+
+    &:active {
+        background: @color_green_tertiary;
+    }
+
+    &:disabled {
+        pointer-events: none;
+        opacity: 0.7;
+    }
+
+    &.blue {
+        background: transparent;
+        border: 1px solid @color_info_primary;
+        color: @color_info_primary;
+        padding: 12px 58px;
+
+        &:hover {
+            color: @color_white;
+            background: @color_info_primary;
+        }
+    }
+
+    &.transparent {
+        background: transparent;
+        border: 0px;
+        color: @color_text_secondary;
+        .hover();
+
+        &:hover,
+        &:active {
+            color: @color_text_primary;
+            background: transparent;
+        }
+    }
+
+    &.confirm {
+        width: 100%;
+        padding: 12px;
+
+        font-size: 14px;
+        color: @color_white;
+        background-color: @color_green_primary;
+    }
+
+    &.cancel {
+        width: 100%;
+        padding: 12px;
+
+        font-size: 14px;
+        color: @color_text_secondary;
+
+        background-color: transparent;
+        border: 1px solid @color_text_secondary;
+
+        &:hover,
+        &:active {
+            color: @color_text_primary;
+            background: transparent;
+        }
+    }
+
+    &.check-devices {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 15px;
+
+        line-height: 1;
+
+        background-color: transparent;
+        border: 1px solid @color_green_secondary;
+        .plus {
+            margin-right: 10px;
+
+            color: @color_green_secondary;
+            &::after {
+                .icomoon-plus;
+            }
+        }
+
+        .text {
+            font-size: 14px;
+            color: @color_green_secondary;
+        }
+
+        &:hover {
+            background-color: @color_green_secondary;
+
+            .plus, .text {
+                color: white;
+            }
+        }
+    }
+
+    &.list {
+        width: 100%;
+        height: 50px;
+
+        padding: 0 15px;
+
+        border: 1px solid @color_divider;
+        border-radius: 0px;
+        border-top-width: 0px;
+
+        text-align: left;
+        color: @color_text_secondary;
+
+        background: @color_white;
+
+        &:first-child {
+            border-top-left-radius: 2px;
+            border-top-right-radius: 2px;
+            border-top-width: 1px;
+        }
+
+        &:last-child {
+            border-bottom-left-radius: 2px;
+            border-bottom-right-radius: 2px;
+        }
+
+        &:not(:disabled):hover,
+        &:not(:disabled):active,
+        &:not(:disabled).active {
+            // Leave the border same width so the inner elements don't move
+            border-left: 1px solid @color_green_tertiary;
+            // Changing the border on hover moves inner elements use box-shadow instead
+            box-shadow: 2px 0 0 @color_green_tertiary inset;
+
+            border-radius: 0px;
+            background: @color_landing;
+        }
+
+        &.disabled:hover {
+            background: white;
+        }
+    }
+
+    &.notification-button {
+        width: 100%;
+
+        border: 1px solid @color_warning_primary;
+        background-color: transparent;
+
+        text-align: center;
+        color: @color_warning_primary;
+
+        transition: all 0.15s;
+        &:hover {
+            color: white;
+            background-color: @color_warning_primary;
+        }
+    }
+}
+
+@media screen and (min-width: 768px) {
+    a.button,
+    button {
+       font-size: 16px;
+
+       &.confirm {
+            font-size: 16px;
+        }
+
+        &.cancel {
+            font-size: 16px;
+        }
+    }
+}

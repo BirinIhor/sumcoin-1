@@ -1,0 +1,245 @@
+.select-fee {
+    display: flex;
+    flex-direction: column;
+
+    .back-button {
+        display: flex;
+        align-items: center;
+        margin-bottom: 12px;
+
+        text-align: left;
+        color: @color_text_secondary;
+
+        .arrow {
+            display: flex;
+            align-items: center;
+            width: 14px;
+            &::after {
+                .icomoon-arrow-left;
+                position: relative;
+                font-size: 18px;
+                left: -4px;
+            }
+        }
+
+        .text {
+            font-size: 13px;
+        }
+
+        &:hover {
+            cursor: pointer;
+            color: @color_text_primary;
+        }
+    }
+
+    h3 {
+        margin-bottom: 12px;
+    }
+
+    .wrapper {
+        height: 100%;
+
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+
+    .select-fee-list {
+        flex: 1;
+        overflow-y: auto;
+
+        button, .custom-fee {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            transition: 0s;
+
+            .fee-title {
+                font-size: 16px;
+                color: @color_text_primary;
+                text-transform: capitalize;
+            }
+
+            .fee-subtitle {
+                font-size: 12px;
+                color: @color_text_secondary;
+                display: block;
+            }
+
+            .fee-info {
+                height: 100%;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+
+                text-align: right;
+                font-size: 12px;
+                white-space: nowrap;
+                color: @color_text_secondary;
+            }
+        }
+
+        /* a button element cannot have any interactive element as a child (not valid HTML) */
+        /* therefore ".custom-fee" is a div styled as button  */
+        .custom-fee {
+            width: 100%;
+            height: 50px;
+
+            padding: 0 15px;
+
+            border: 1px solid @color_divider;
+            border-radius: 0px;
+            border-top-width: 0px;
+
+            text-align: left;
+            color: @color_text_secondary;
+
+            background: @color_white;
+
+            cursor: pointer;
+
+            &:first-child {
+                border-top-left-radius: 2px;
+                border-top-right-radius: 2px;
+                border-top-width: 1px;
+            }
+
+            &:last-child {
+                border-bottom-left-radius: 2px;
+                border-bottom-right-radius: 2px;
+            }
+
+            &:not(:disabled):hover,
+            &:not(:disabled):active,
+            &:not(:disabled).active {
+                // Leave the border same width so the inner elements don't move
+                border-left: 1px solid @color_green_tertiary;
+                // Changing the border on hover moves inner elements use box-shadow instead
+                box-shadow: 2px 0 0 @color_green_tertiary inset;
+
+                border-radius: 0px;
+                background: @color_landing;
+            }
+
+            &.disabled:hover {
+                background: white;
+            }
+
+            .fee-data {
+                width: 100%;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                height: 30px;
+
+                .fee-info {
+                    visibility: hidden;
+                    height: auto;
+                }
+            }
+
+            .bottom {
+                display: none;
+            }
+
+            &.active {
+                height: 140px;
+                padding: 9px 15px;
+
+                flex-direction: column;
+                align-items: unset;
+
+                cursor: text;
+
+                .fee-info {
+                    visibility: visible;
+                    padding-top: 1px;
+                }
+
+                .bottom {
+                    display: block;
+                }
+
+                .fee-input, .note {
+                    width: 100%;
+                }
+
+                .fee-input {
+                    line-height: 30px;
+                    border: 1px solid @color_divider;
+                    border-radius: 2px;
+
+                    font-size: 14px;
+                    padding-left: 9px;
+                }
+
+                .fee-input::-webkit-outer-spin-button,
+                .fee-input::-webkit-inner-spin-button {
+                    /* display: none; <- Crashes Chrome on hover */
+                    -webkit-appearance: none;
+                    margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
+                }
+
+                .note {
+                    text-align: center;
+                    font-size: 12px;
+                    color: @color_text_secondary;
+                    padding-top: 4px;
+                }
+            }
+        }
+    }
+}
+
+.insufficient-funds, .amount-too-low {
+    .loader-layout();
+}
+
+@media screen and (min-width: 768px) {
+    .select-fee {
+        max-width: none;
+        height: 100%;
+
+        .back-button {
+            .text {
+                font-size: 16px;
+            }
+        }
+
+        .content {
+            width: 450px;
+            margin: 0 auto;
+
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+
+            .wrapper {
+                height: auto;
+            }
+        }
+
+        .send-button {
+            margin-top: 20px;
+        }
+    }
+}
+
+@media screen and (max-width: 639px) {
+    .select-fee {
+        .back-button {
+            margin-bottom: 20px;
+        }
+
+        .wrapper {
+            display: block;
+        }
+
+        .send-button {
+            width: 100%;
+            margin: 14px 0 25px;
+        }
+    }
+}
