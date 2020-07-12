@@ -1,0 +1,114 @@
+.passphrase {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    .inputs {
+        width: 100%;
+    }
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+
+    h3 {
+        display: flex;
+        justify-content: center;
+        white-space: nowrap;
+        padding: 0;
+
+        span {
+            .test-ellipsis();
+
+            margin: 0 3px;
+        }
+    }
+
+    label:not(.custom-checkbox) {
+        display: block;
+        padding-bottom: 6px;
+
+        font-weight: 300;
+        color: @color_text_secondary;
+    }
+
+    .row {
+        position: relative;
+        text-align: left;
+
+        padding-top: 16px;
+        font-weight: 300;
+        font-size: 14px;
+
+        &:not(:first) {
+            padding-top: 24px;
+        }
+
+        input {
+            width: 100%;
+
+            // font-family: 'text-security-disc';
+            // font-size: 21px;
+            // font-weight: normal;
+            // letter-spacing: 4px;
+            font-family: "Roboto Mono", Menlo, Monaco, Consolas, "Courier New", monospace;
+            font-size: 18px;
+            letter-spacing: normal;
+
+            line-height: 30px;
+            &:focus {
+                box-shadow: none;
+                border: 1px solid @color_text_primary;
+            }
+
+            &[disabled] {
+                cursor: not-allowed;
+                background: @color_landing;
+            }
+
+            &.text {
+                font-family: "Roboto Mono", Menlo, Monaco, Consolas, "Courier New", monospace;
+                font-size: 18px;
+                letter-spacing: normal;
+            }
+        }
+    }
+
+    &.not-valid {
+        .error {
+            display: block;
+        }
+    }
+
+    .error-container {
+        height: 16px;
+        margin-bottom: 10px;
+    }
+
+    .error {
+        display: none;
+
+        font-weight: 400;
+        color: @color_error_primary;
+    }
+
+    .confirm {
+        margin-bottom: 10px;
+    }
+}
+
+
+.passphrase-on-device {
+    h3 {
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+
+        white-space: nowrap;
+        span {
+            .test-ellipsis();
+        }
+    }
+    .loader-layout();
+}
