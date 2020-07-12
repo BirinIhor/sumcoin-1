@@ -1,0 +1,67 @@
+image: registry.gitlab.com/satoshilabs/trezor/connect/base:0678551246801d5d28d5eda4949cdeb99f3685e7
+
+stages:
+  # - docker
+  - build
+  - deploy
+  - integration-test
+
+# build & push image:
+#     stage: docker
+#     when: manual
+#     before_script:
+#         - docker login $CI_REGISTRY -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD
+#     variables:
+#         DOCKER_TLS_CERTDIR: ''
+#         CONTAINER_NAME: "$CI_REGISTRY/satoshilabs/trezor/connect/base"
+#     image: docker
+#     services:
+#         - docker:dind
+#     script:
+#         - docker pull $CONTAINER_NAME:latest || true
+#         - docker build --tag $CONTAINER_NAME:$CI_COMMIT_SHA --tag $CONTAINER_NAME:latest ./ci
+#         - docker push $CONTAINER_NAME:$CI_COMMIT_SHA
+#         - docker push $CONTAINER_NAME:latest
+
+build:
+  stage: build
+  script:
+    - yarn
+    - yarn flow
+    - yarn eslint
+    - yarn test:unit
+    - make build-connect
+  artifacts:
+    expire_in: 1 week
+    paths:
+      - build
+
+deploy review:
+  stage: deploy
+  variables:
+    GIT_STRATEGY: none
+  dependencies:
+    - build
+  environment:
+    name: $CI_BUILD_REF_NAME
+    url: $BASE_REVIEW_URL/$CI_BUILD_REF_NAME
+  script:
+    - echo "Deploy a review app"
+    - '[ -z "${DEPLOY_BASE_DIR}" ] && echo "Deploy base dir cannot be empty" && exit 255'
+    - env
+    - mkdir -p "${DEPLOY_BASE_DIR}/${CI_BUILD_REF_NAME}"
+    - echo "Copy dev build to web server ${DEPLOY_BASE_DIR}/${CI_BUILD_REF_NAME}..."
+    - rsync --delete -va build/ "${DEPLOY_BASE_DIR}/${CI_BUILD_REF_NAME}/"
+  only:
+    - branches
+  tags:
+    - deploy
+
+integration-test:
+  stage: integration-test
+  dependencies:
+    - deploy review
+  script:
+    - echo "Integration testing newly built connect"
+    - curl https://connect.corp.sldev.cz/fix/blockchain-link-bump
+    - curl https://connect.corp.sldev.cz/${CI_BUILD_REF_NAME}
