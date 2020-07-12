@@ -1,0 +1,22 @@
+.device-management {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  h3 {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    span {
+      white-space: nowrap;
+    }
+  }
+
+  .buttons {
+    .confirm {
+      margin-bottom: 10px;
+      &.wipe {
+        background-color: @color_error_primary;
+      }
+    }
+  }
+}
