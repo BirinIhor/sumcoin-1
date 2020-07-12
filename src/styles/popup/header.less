@@ -1,0 +1,54 @@
+header {
+    position: fixed;
+    top: 0;
+    width: 640px;
+    height: 64px;
+    padding: 0px 32px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: @color_white;
+
+    figure {
+        width: auto;
+        height: 24px;
+        margin: 0;
+        svg {
+            fill: @color_text_primary;
+        }
+    }
+
+    aside {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+
+        .icon {
+            width: auto;
+            height: 24px;
+            display: none;
+            margin-right: 24px;
+
+            img {
+                width: auto;
+                height: 100%;
+            }
+        }
+
+        .description {
+            display: flex;
+            flex-direction: column;
+            .operation {
+                font-size: 14px;
+                font-weight: 400;
+                color: @color_text_primary;
+            }
+
+            .origin {
+                font-size: 12px;
+                color: @color_text_secondary;
+                margin-top: 2px;
+            }
+        }
+    }
+}
