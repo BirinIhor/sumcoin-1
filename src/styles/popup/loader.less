@@ -1,0 +1,50 @@
+.loader {
+    position: relative;
+    width: 130px;
+    height: 130px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-self: center;
+
+    p {
+        position: absolute;
+        color: @color_text_secondary;
+        margin: 0;
+        width: 100%;
+        padding: 0px 24px;
+    }
+
+    .circular {
+        padding-top: 0px;
+        width: 130px;
+        height: 130px;
+        .animation-rotate();
+        transform-origin: center center;
+
+        position: absolute;
+
+        .route {
+            stroke: @color_gray_light;
+        }
+
+        .path {
+            stroke-dasharray: 1, 200;
+            stroke-dashoffset: 0;
+            .animation-dash-color();
+            stroke-linecap: round;
+        }
+    }
+}
+
+@media screen and (min-width: 768px) {
+    .loader {
+        width: 160px;
+        height: 160px;
+
+        .circular {
+            width: 160px;
+            height: 160px;
+        }
+    }
+}
