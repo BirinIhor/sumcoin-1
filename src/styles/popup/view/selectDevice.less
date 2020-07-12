@@ -1,0 +1,130 @@
+.select-device {
+    .wrapper {
+        height: 100%;
+
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+
+        .select-device-list {
+            margin: 17px 0 15px;
+            overflow-y: auto;
+
+            border-top: 1px solid @color_divider;
+            border-bottom: 1px solid @color_divider;
+
+            border-top-left-radius: 2px;
+            border-top-right-radius: 2px;
+            border-bottom-left-radius: 2px;
+            border-bottom-right-radius: 2px;
+
+            button.list:first-child {
+                border-top: transparent;
+            }
+
+            button.list:last-child {
+                border-bottom: transparent;
+            }
+
+            button {
+                transition: 0s;
+                padding: 0;
+
+                &.device-explain {
+                    height: auto;
+                    pointer-events: auto;
+
+                    &:hover:not(.unacquired) {
+                        cursor: default;
+                    }
+                }
+
+                .wrapper {
+                    display: flex;
+                    flex-direction: row;
+                    justify-content: flex-start;
+                    align-items: center;
+
+                    padding: 10px 15px;
+                }
+
+                .icon {
+                    width: 24px;
+                    height: 24px;
+                    display: inline-block;
+                    vertical-align: middle;
+                    background-repeat: no-repeat;
+
+                    background-image: url('../../../images/icon-trezor.png');
+                    background-size: 14px 24px;
+
+                    &.model-t {
+                        background-image: url('../../../images/icon-trezorT.png');
+                    }
+
+                    &.unknown {
+                        background-image: url('../../../images/icon-unknown.png');
+                    }
+                }
+
+
+                .explain {
+                    padding: 15px 10px;
+
+                    font-weight: 400;
+                    font-size: 12px;
+                    color: @color_warning_primary;
+                    background-color: @color_warning_secondary;
+
+                    &.unacquired {
+                        box-shadow: inherit;
+
+                        color: @color_info_primary;
+                        background-color: @color_info_secondary;
+                    }
+                }
+
+                .device-name {
+                    .test-ellipsis();
+                    max-width: 200px;
+                }
+            }
+        }
+
+        .remember-check-device {
+            margin-bottom: 40px;
+        }
+
+        .check-devices {
+            margin-top: 18px;
+        }
+
+        input:checked + .indicator:after {
+            background-color: @color_green_primary;
+            border-color: @color_green_primary;
+        }
+    }
+
+    .webusb {
+        .webUsbBase()
+    }
+}
+
+@media screen and (max-width: 639px) {
+    .select-device {
+        .wrapper > .select-device-list {
+            overflow: visible;
+            max-height: none;
+        }
+
+        .wrapper {
+            .select-device {
+                button {
+                    .explain {
+                        font-size: 14px;
+                    }
+                }
+            }
+        }
+    }
+}
