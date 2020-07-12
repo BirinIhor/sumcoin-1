@@ -1,0 +1,99 @@
+@default_popup_width: 639px;
+@mobile_break: calc(@default_popup_width - 1px);
+
+@media screen and (min-width: 768px) {
+    aside {
+        width: 35%;
+    }
+
+    section {
+        width: 65%;
+        align-items: center;
+    }
+
+    section > div {
+        height: auto;
+    }
+}
+
+@media screen and (max-width: @default_popup_width) {
+    main {
+        flex-direction: column;
+        min-height: none;
+    }
+    section, aside {
+        width: 100%;
+        height: auto;
+    }
+
+    section {
+        // overflow: visible;
+    }
+
+    aside {
+        .wrapper {
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        svg {
+            align-self: auto;
+        }
+
+        .info-panel {
+            text-align: right;
+            h2 {
+                font-size: 16px;
+                padding-top: 5px;
+            }
+        }
+        .labeling {
+            display: none;
+        }
+    }
+
+    section {
+        flex: 1;
+
+        div > svg {
+            padding-top: 15px;
+        }
+
+        div.pin {
+            // The .pin view is the only that overflows on mobile
+            min-height: 480px;
+        }
+
+        div.passphrase {
+            padding: 20px 30px;
+        }
+
+        div.browser {
+            flex-direction: column;
+        }
+    }
+
+    // Fee selection is scrollable on mobile
+    // if custom fee is selected
+    .confirm {
+        margin-top: 25px;
+    }
+}
+
+@media screen and (max-width: 425px) {
+    aside {
+        .wrapper {
+            flex-direction: column;
+
+            svg {
+                margin: 0;
+            }
+
+            .info-panel {
+                max-width: 100%;
+                text-align: center;
+            }
+        }
+    }
+}

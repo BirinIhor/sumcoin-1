@@ -1,0 +1,117 @@
+// If the view is smaller than smallest supported size the scroller appears
+@smallest_supported_height: 500px;
+@smallest_supported_width: 328px;
+
+
+* , *:before , *:after {
+    box-sizing: border-box;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+*:focus, *:active, *:active:focus, *.focus, *:active.focus, *.active.focus, *::selection, *::-moz-selection {
+    outline: 0 !important;
+    -webkit-appearance: none;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+html, body {
+    width: 100%;
+    height: 100%;
+}
+
+html {
+    position: relative;
+
+    font-size: 100%;
+}
+
+body {
+    position: relative;
+    // overflow: hidden;
+
+    min-height: @smallest_supported_height;
+    min-width: @smallest_supported_width;
+
+    font-family: @font-default;
+    font-weight: 400;
+    font-size: 14px;
+    color: @color_text_primary;
+}
+
+main {
+    width: 100%;
+    height: 100%;
+    min-width: 300px;
+    min-height: none;
+
+    display: flex;
+
+    // overflow-y: auto;
+}
+
+section {
+    width: 50%;
+    // overflow-y: auto;
+
+    display: flex;
+    justify-content: center;
+
+    text-align: center;
+}
+
+#views {
+    display: none;
+}
+
+p {
+    font-size: 12px;
+    font-weight: 300;
+    color: @color_text_secondary;
+}
+
+h2 {
+    font-size: 22px;
+    font-weight: 600;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+}
+
+h3 {
+    font-size: 16px;
+    font-weight: 600;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    color: @color_header;
+}
+
+a:focus,
+button:focus,
+input:focus,
+textarea:focus {
+    outline: 0;
+}
+
+// disable lastpass helper
+#__lpform_input_idx_0_numspan,
+#__lpform_input_idx_0 {
+    display: none;
+}
+
+@media screen and (min-width: 768px) {
+    p {
+        font-size: 15px;
+        font-weight: 400px;
+    }
+
+    h2 {
+        font-size: 22px;
+    }
+
+    h3 {
+        font-size: 19px;
+    }
+}
